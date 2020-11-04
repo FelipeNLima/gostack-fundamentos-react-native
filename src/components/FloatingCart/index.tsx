@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useContext } from 'react';
-import { ThemeContext } from 'styled-components';
+import React, { useState, useMemo } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -25,30 +24,20 @@ const FloatingCart: React.FC = () => {
   const navigation = useNavigation();
 
   const cartTotal = useMemo(() => {
-    // TODO RETURN THE SUM OF THE PRICE FROM ALL ITEMS IN THE CART
-
-    const quantity = products.reduce((accumulator, product) => {
-      accumulator += product.price * product.quantity;
-
-      return accumulator;
+    const productTotal = products.reduce((accumulator, product) => {
+      const productSubtotal = product.price * product.quantity;
+      return accumulator + productSubtotal;
     }, 0);
-
-    return formatValue(quantity);
+    return formatValue(productTotal);
   }, [products]);
 
   const totalItensInCart = useMemo(() => {
-    // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
-
-    const quantity = products.reduce((accumulator, product) => {
-      accumulator += 1 * product.quantity;
-
-      return accumulator;
+    const productQuantityTotal = products.reduce((accumulator, product) => {
+      const productQuantity = product.quantity;
+      return accumulator + productQuantity;
     }, 0);
-
-    return quantity;
+    return productQuantityTotal;
   }, [products]);
-
-  const { colors, title } = useContext(ThemeContext);
 
   return (
     <Container>
@@ -56,7 +45,7 @@ const FloatingCart: React.FC = () => {
         testID="navigate-to-cart-button"
         onPress={() => navigation.navigate('Cart')}
       >
-        <FeatherIcon name="shopping-cart" size={24} color={colors.primary} />
+        <FeatherIcon name="shopping-cart" size={24} color="#fff" />
         <CartButtonText>{`${totalItensInCart} itens`}</CartButtonText>
       </CartButton>
 

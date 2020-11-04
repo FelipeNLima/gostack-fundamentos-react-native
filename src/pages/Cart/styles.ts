@@ -4,7 +4,6 @@ import { FlatList } from 'react-native';
 export const Container = styled.SafeAreaView`
   flex: 1;
   align-items: center;
-  background: ${props => props.theme.colors.primary};
 `;
 
 export const ProductContainer = styled.View`
@@ -20,7 +19,7 @@ export const ProductList = styled(FlatList)`
 `;
 
 export const Product = styled.View`
-  background: ${props => props.theme.colors.secondary};
+  background: #fff;
   padding: 15px 10px;
   border-radius: 5px;
   margin: 5px;
@@ -40,7 +39,6 @@ export const ProductTitleContainer = styled.View`
 
 export const ProductTitle = styled.Text`
   font-size: 16px;
-  color: ${props => props.theme.colors.terciary};
 `;
 
 export const ProductPriceContainer = styled.View`
@@ -104,7 +102,7 @@ export const TotalProductsContainer = styled.View`
 
 export const TotalProductsText = styled.Text`
   font-size: 16px;
-  color: ${props => props.theme.colors.secondary};
+  color: #fff;
   margin-left: 15px;
 
   flex: 1;
@@ -113,6 +111,6 @@ export const TotalProductsText = styled.Text`
 
 export const SubtotalValue = styled.Text`
   font-size: 16px;
-  color: ${props => props.theme.colors.secondary};
+  color: #fff;
   font-weight: bold;
 `;

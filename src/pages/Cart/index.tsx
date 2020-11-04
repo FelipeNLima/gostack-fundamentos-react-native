@@ -1,9 +1,8 @@
-import React, { useMemo, useContext } from 'react';
+import React, { useMemo } from 'react';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import { View } from 'react-native';
 
-import { ThemeContext } from 'styled-components';
 import {
   Container,
   ProductContainer,
@@ -28,6 +27,8 @@ import { useCart } from '../../hooks/cart';
 
 import formatValue from '../../utils/formatValue';
 
+import FloatingCart from '../../components/FloatingCart';
+
 interface Product {
   id: string;
   title: string;
@@ -48,30 +49,20 @@ const Cart: React.FC = () => {
   }
 
   const cartTotal = useMemo(() => {
-    // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
-
-    const quantity = products.reduce((accumulator, product) => {
-      accumulator += product.price * product.quantity;
-
-      return accumulator;
+    const productTotal = products.reduce((accumulator, product) => {
+      const productSubtotal = product.price * product.quantity;
+      return accumulator + productSubtotal;
     }, 0);
-
-    return formatValue(quantity);
+    return formatValue(productTotal);
   }, [products]);
 
   const totalItensInCart = useMemo(() => {
-    // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
-
-    const quantity = products.reduce((accumulator, product) => {
-      accumulator += 1 * product.quantity;
-
-      return accumulator;
+    const productQuantityTotal = products.reduce((accumulator, product) => {
+      const productQuantity = product.quantity;
+      return accumulator + productQuantity;
     }, 0);
-
-    return quantity;
+    return productQuantityTotal;
   }, [products]);
-
-  const { colors } = useContext(ThemeContext);
 
   return (
     <Container>
@@ -120,8 +111,9 @@ const Cart: React.FC = () => {
           )}
         />
       </ProductContainer>
+
       <TotalProductsContainer>
-        <FeatherIcon name="shopping-cart" color={colors.secondary} size={24} />
+        <FeatherIcon name="shopping-cart" color="#fff" size={24} />
         <TotalProductsText>{`${totalItensInCart} itens`}</TotalProductsText>
         <SubtotalValue>{cartTotal}</SubtotalValue>
       </TotalProductsContainer>

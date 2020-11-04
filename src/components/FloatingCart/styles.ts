@@ -18,7 +18,7 @@ export const CartPricing = styled.Text`
 
 export const CartTotalPrice = styled.Text`
   font-size: 16px;
-  color: ${props => props.theme.colors.primary};
+  color: #fff;
   font-weight: bold;
 `;
 
@@ -34,7 +34,7 @@ export const CartButton = styled.TouchableOpacity`
 
 export const CartButtonText = styled.Text`
   font-weight: bold;
-  color: ${props => props.theme.colors.primary};
+  color: #fff;
   margin-left: 15px;
   flex: 1;
   margin-right: auto;
